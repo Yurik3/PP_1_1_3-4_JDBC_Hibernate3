@@ -7,7 +7,7 @@ import jm.task.core.jdbc.util.Util;
 import java.sql.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Util.getConnection();
         UserDao userDao = new UserDaoJDBCImpl();
         userDao.createUsersTable();

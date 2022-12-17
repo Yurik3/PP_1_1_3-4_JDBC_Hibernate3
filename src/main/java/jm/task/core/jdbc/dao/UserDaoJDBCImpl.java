@@ -14,24 +14,28 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
-    public void createUsersTable() {
+    public void createUsersTable() throws SQLException {
         try (Statement statement = con.createStatement()) {
             statement.executeUpdate("CREATE TABLE  IF NOT EXISTS user " + " ( Id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), lastName VARCHAR(255), age INT)");
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            con.isClosed();
         }
     }
 
-    public void dropUsersTable() {
+    public void dropUsersTable() throws SQLException {
         try (Statement statement = con.createStatement()) {
             statement.executeUpdate(" DROP TABLE IF EXISTS user ");
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        } finally {
+        con.isClosed();
+    }
 
     }
 
-    public void saveUser(String name, String lastName, byte age) {
+    public void saveUser(String name, String lastName, byte age) throws SQLException {
         try (PreparedStatement prStatement = con.prepareStatement("INSERT INTO user (name, lastName, age) VALUES (?, ?, ?)")) {
             prStatement.setString(1, name);
             prStatement.setString(2, lastName);
@@ -39,11 +43,13 @@ public class UserDaoJDBCImpl implements UserDao {
             prStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            con.isClosed();
         }
 
     }
 
-    public void removeUserById(long id) {
+    public void removeUserById(long id) throws SQLException {
 
         try (PreparedStatement prStatement = con.prepareStatement("DELETE  FROM user WHERE  id = ? ")) {
             prStatement.setLong(1, id);
@@ -51,12 +57,14 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            con.isClosed();
         }
 
 
     }
 
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers() throws SQLException {
 
         List<User> users = new ArrayList<>();
 
@@ -70,16 +78,20 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            con.isClosed();
         }
 
         return users;
     }
 
-    public void cleanUsersTable() {
+    public void cleanUsersTable() throws SQLException {
         try (Statement statement = con.createStatement()) {
             statement.executeUpdate("TRUNCATE TABLE user");
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            con.isClosed();
         }
 
     }
