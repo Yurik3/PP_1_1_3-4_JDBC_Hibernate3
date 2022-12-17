@@ -20,7 +20,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            con.isClosed();
+            con.close();
         }
     }
 
@@ -30,7 +30,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-        con.isClosed();
+        con.close();
     }
 
     }
@@ -44,7 +44,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            con.isClosed();
+            con.close();
         }
 
     }
@@ -58,7 +58,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            con.isClosed();
+            con.close();
         }
 
 
@@ -79,7 +79,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            con.isClosed();
+            con.close();
         }
 
         return users;
@@ -91,7 +91,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
-            con.isClosed();
+            con.close();
         }
 
     }
