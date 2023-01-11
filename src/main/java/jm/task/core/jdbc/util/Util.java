@@ -9,12 +9,11 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/testy";
     private static final String USER_NAME = "rot";
     private static final String PASSWORD = "root";
-
+    static Connection connection = null;
 
     public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+
+        try (Connection   connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
             System.out.println(" Соеденение установлено");
         } catch (SQLException e) {
             e.printStackTrace();

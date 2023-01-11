@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    public static final Connection con = Util.getConnection();
+
+    Connection con = Util.getConnection();
 
     public UserDaoJDBCImpl() {
-
     }
 
     public void createUsersTable() throws SQLException {
@@ -19,8 +19,6 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.executeUpdate("CREATE TABLE  IF NOT EXISTS user " + " ( Id BIGINT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255), lastName VARCHAR(255), age INT)");
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            con.close();
         }
     }
 
@@ -29,9 +27,7 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.executeUpdate(" DROP TABLE IF EXISTS user ");
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-        con.close();
-    }
+        }
 
     }
 
@@ -43,8 +39,6 @@ public class UserDaoJDBCImpl implements UserDao {
             prStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            con.close();
         }
 
     }
@@ -57,8 +51,6 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            con.close();
         }
 
 
@@ -78,8 +70,6 @@ public class UserDaoJDBCImpl implements UserDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            con.close();
         }
 
         return users;
@@ -90,8 +80,6 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.executeUpdate("TRUNCATE TABLE user");
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            con.close();
         }
 
     }
