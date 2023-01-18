@@ -11,7 +11,7 @@ public class Util {
     private static final String PASSWORD = "root";
     static Connection connection = null;
 
-    public static Connection getConnection() {
+    public  Connection getConnection() {
 
         try (Connection   connection = DriverManager.getConnection(URL, USER_NAME, PASSWORD)) {
             System.out.println(" Соеденение установлено");
